@@ -1,12 +1,20 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
+#include <cstring>
 
 using namespace std;
 
 void exibirVector(vector<string> wrd){
     for(int i=0; i < wrd.size(); ++i)
         cout << wrd[i];
+}
+
+string Maiuscula(string convertStr)
+{
+    std::transform(convertStr.begin(), convertStr.end(), convertStr.begin(), ::toupper);
+
+    return convertStr;
 }
 
 string criarDWord(string word) {
@@ -21,14 +29,18 @@ string criarDWord(string word) {
 }
 int main(){
     string aword;
+    string finalword;
     cout << "Digite uma palavrinha: ";
-    cin >> aword;
+    getline( cin, aword);
     string daword = criarDWord(aword);
+    finalword = aword;
+    aword = Maiuscula(aword);
+    daword = Maiuscula(daword);
     if (daword == aword)
-        cout << aword << " é um palíndromo."
+        cout << finalword << " é um palíndromo."
             << endl;
     else
-        cout << aword << " não é um palíndromo."
+        cout << finalword << " não é um palíndromo."
             << endl;
     return 0;
 }
